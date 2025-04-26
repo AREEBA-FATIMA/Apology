@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Heartfelt Apology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #e63946;
+      --secondary-color: #f1faee;
+      --accent-color: #a8dadc;
+      --dark-color: #1d3557;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark-color);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 800px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      padding: 40px;
+      margin: 20px;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px) rotateX(1deg);
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 3px;
+      background: var(--accent-color);
+      margin: 15px auto;
+    }
+
+    .message {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .signature {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      text-align: right;
+      color: var(--primary-color);
+      margin-top: 40px;
+    }
+
+    .heart-container {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .heart {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .heart:hover {
+      transform: scale(1.3);
+    }
+
+    .memory-box {
+      background-color: var(--secondary-color);
+      border-left: 5px solid var(--accent-color);
+      padding: 20px;
+      margin: 30px 0;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .memory-title {
+      font-weight: 600;
+      color: var(--dark-color);
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: block;
+      width: 200px;
+      margin: 30px auto 0;
+      padding: 12px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: var(--dark-color);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .petals {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .petal {
+      position: absolute;
+      background-size: contain;
+      opacity: 0.7;
+      animation: falling linear infinite;
+    }
+
+    @keyframes falling {
+      0% {
+        transform: translate(0, -10vh) rotate(0deg);
+      }
+      100% {
+        transform: translate(calc(var(--random-x) * 5vw), 100vh) rotate(360deg);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .hidden-message {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .show-message {
+      max-height: 500px;
+    }
+
+    .music-indicator {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 10px 15px;
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .music-indicator {
+        font-size: 12px;
+        padding: 8px 12px;
+        bottom: 15px;
+        right: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Petals -->
+  <div class="petals" id="petals"></div>
+
+  <div class="container">
+    <h1>My Heartfelt Apology</h1>
+    
+    <div class="message">
+      <p>I know words can't undo what's been done, but please know that hurting you was never my intention, and I'm truly sorry for letting my words cause you pain.</p>
+      
+      <p>I value you more than you might realize, and the thought of our bond being strained because of my careless words breaks my heart.</p>
+    </div>
+    
+    <div class="memory-box">
+      <div class="memory-title">What I Miss Most</div>
+      <p>Our late-night conversations, your infectious laughter, and the way you always understood me even when I couldn't find the right words.</p>
+    </div>
+    
+    <div class="heart-container">
+      <div class="heart" id="heart">❤️</div>
+    </div>
+    
+    <div class="hidden-message" id="hiddenMessage">
+      <p>I promise to try to be more thoughtful with my words and to cherish our companionship with the care it deserves.</p>
+      <p>Will you give me a chance to make things right?</p>
+    </div>
+    
+    <a href="#" class="btn" id="promiseBtn">My Promise to You</a>
+    
+    <div class="signature">With regret and hope,<br>Areeba Fatima</div>
+  </div>
+
+  <!-- Music Indicator (hidden by default) -->
+  <div class="music-indicator" id="musicIndicator">
+    <span>🔊</span>
+    <span>Click anywhere to play music</span>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Create falling petals (slower speed)
+    const petalsContainer = document.getElementById('petals');
+    const petalCount = 15;
+    
+    for (let i = 0; i < petalCount; i++) {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.innerHTML = '🌸';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.fontSize = (Math.random() * 20 + 10) + 'px';
+      petal.style.animationDuration = (Math.random() * 20 + 15) + 's';
+      petal.style.animationDelay = Math.random() * 5 + 's';
+      petal.style.setProperty('--random-x', Math.random() * 2 - 1);
+      petalsContainer.appendChild(petal);
+    }
+    
+    // Interactive elements
+    const heart = document.getElementById('heart');
+    const hiddenMessage = document.getElementById('hiddenMessage');
+    const promiseBtn = document.getElementById('promiseBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    const musicIndicator = document.getElementById('musicIndicator');
+    
+    // Music handling
+    const handleMusicPlayback = () => {
+      bgMusic.volume = 0.3;
+      const playPromise = bgMusic.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          // Show music indicator if autoplay is blocked
+          musicIndicator.style.display = 'flex';
+          
+          // Play music on first interaction
+          const playOnInteraction = () => {
+            bgMusic.play()
+              .then(() => {
+                musicIndicator.style.display = 'none';
+                document.body.removeEventListener('click', playOnInteraction);
+              })
+              .catch(e => console.log("Still couldn't play:", e));
+          };
+          
+          document.body.addEventListener('click', playOnInteraction);
+        });
+      }
+    };
+    
+    // Try to play music when page loads
+    document.addEventListener('DOMContentLoaded', handleMusicPlayback);
+    
+    // Heart click interaction
+    heart.addEventListener('click', () => {
+      heart.style.animation = 'none';
+      heart.offsetHeight; // Trigger reflow
+      heart.style.animation = 'float 3s ease-in-out infinite';
+      hiddenMessage.classList.toggle('show-message');
+    });
+    
+    // Promise button
+    promiseBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert("I try to:\n\n1. Think before I speak\n2. Value your feelings above being right\n3. Never take our companionship for granted\n\nYou mean the world to me.");
+    });
+    
+    // Typewriter effect for messages
+    const messages = document.querySelectorAll('.message p, .memory-box p');
+    messages.forEach(msg => {
+      const text = msg.textContent;
+      msg.textContent = '';
+      
+      let i = 0;
+      const typing = setInterval(() => {
+        if (i < text.length) {
+          msg.textContent += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(typing);
+        }
+      }, 30);
+    });
+  </script>
+</body>
+</html>
